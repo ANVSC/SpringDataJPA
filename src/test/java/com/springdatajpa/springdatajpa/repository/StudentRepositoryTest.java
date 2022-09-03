@@ -70,6 +70,23 @@ class StudentRepositoryTest {
         List<Student> studentList2 = studentRepository.findByGuardianNameContaining("gau");
         studentList2.stream().forEach(System.out::println);
 
+    }
+
+    // JPQL Query Test
+    @Test
+    public void testJPQL()
+    {
+        Student student = studentRepository.getStudentByEmailAddress("sumendra@email");
+        System.out.println("printStudentByEmailAdressUsingJPQL == "+student);
+        System.out.println("*********************************************************************************** ");
+
+        String studentName = studentRepository.getStudentNameByEmailAddress("sumendra@email");
+        System.out.println("getStudentNameByEmailAddress == "+studentName);
+        System.out.println("*********************************************************************************** ");
+
+        String studentName1 = studentRepository.getStudentNameByEmailAddress1("sumendra@email");
+        System.out.println("getStudentNameByEmailAddress == "+studentName1);
+        System.out.println("*********************************************************************************** ");
 
 
     }
