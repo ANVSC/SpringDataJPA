@@ -2,9 +2,11 @@ package com.springdatajpa.springdatajpa.repository;
 
 import com.springdatajpa.springdatajpa.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -44,6 +46,24 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
     Student getStudentByEmailAdressWithNativeSQLQueryAndNamedParam(@Param("inputEmialId") String emialId,
                                                                    @Param("inputfirstname") String firstName
     );
+
+    // For updating and deleting data
+    @Modifying // Allwoing to modify data inside DB
+    @Transactional
+    /*
+     * @Transactional will create a transaction and make the changes in DB and will commit and ends transction.
+     * If there is any exception happens, transaction will gets roll back.
+     * Ideally we have to write @Transactional annotation on the top of method in service class
+     * For example if there is a method in service is calling 3 different methods in repository layer and lets
+      assume those 3 different methods will update 3 different tables. Now we write @Transactional on the method in service.
+      This will start a transaction and will update all the 3 tables and will commit transcation at the end.
+
+     */
+    @Query(
+            nativeQuery = true,
+            value = "update tbl_student set first_name = ?1 where email_address = ?2"
+    )
+    int updateStudentNameByEmailId(String firstName,String emailId);
 
 }
 

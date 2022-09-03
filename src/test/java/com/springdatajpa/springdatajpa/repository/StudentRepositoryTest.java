@@ -105,4 +105,11 @@ class StudentRepositoryTest {
         System.out.println("*********************************************************************************** \n ");
 
     }
+
+    @Test
+    public void testModifingTransactional()
+    {
+        int result  = studentRepository.updateStudentNameByEmailId("Sumendra", "student1@email");
+        System.out.println("result ===== "+result);
+    }
 }
