@@ -91,4 +91,18 @@ class StudentRepositoryTest {
 
     }
 
+    @Test
+    public void testNativeQuery()
+    {
+        System.out.println("*********************************************************************************** ");
+        Student student = studentRepository.getStudentByEmailAdressWithNativeSQLQuery("sumendra@email");
+        System.out.println("getStudentByEmailAdressWithNativeSQLQuery == "+student);
+        System.out.println("*********************************************************************************** \n ");
+
+        System.out.println("*********************************************************************************** ");
+        Student student1 = studentRepository.getStudentByEmailAdressWithNativeSQLQueryAndNamedParam("sumendra@email","Sumendra");
+        System.out.println("getStudentByEmailAdressWithNativeSQLQuery == "+student1);
+        System.out.println("*********************************************************************************** \n ");
+
+    }
 }
