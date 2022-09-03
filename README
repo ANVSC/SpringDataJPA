@@ -1,2 +1,18 @@
 * Leanings of Spring Data JPA
 * https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods ---> reference doc for query methods
+
+** Student contains Gaurdian as Embedded class
+
+** Course and CourseMaterial has one-one relationship - CourseMaterial is having foreign Key of course Id in it
+   * If we tried to save CourseMaterial without having the respective course details in course table, then it will throw
+    exception. Inorder to get rid of this error, CASCADING came to picture.
+
+    * For fetching data from the tables which are having mappings ,  there are two types of fetching types.
+        1. Eager - when u try to fetch data of courseMaterial if u need course details also to be fetched, then for gor eager fetching.
+        2. Lazy - when u try to fetch data of courseMaterial if u DONT NEED course details  to be fetched, then for gor Lazy fetching.
+            When we try to fetch Lazy course material, there will be chance of getting course as null.
+            now when we try to print it it wll give error.(org.hibernate.LazyInitializationException: could not initialize proxy [com.springdatajpa.springdatajpa.entity.Course#1] )
+            So we have to exclude course details from to_string method of courseMaterial
+** Till now we have created a course reference in course material. When we tries to print course alone we will get
+only course details. If we need to get course material details as well then we have to create a bi directional
+mapping from course to course material.
