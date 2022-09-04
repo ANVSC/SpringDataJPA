@@ -20,7 +20,7 @@ class CourseMaterialRepositoryTest {
     public void saveCourseMaterial()
     {
         CourseMaterial courseMaterial= CourseMaterial.builder()
-                .url("www.spring.com")
+                .url("www.springdatajpa.com")
                 .course(Course.builder().courseTitle("SpringArchitecture").credit(10).build())
                 .build();
         courseMaterialRepository.save(courseMaterial);

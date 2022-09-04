@@ -16,3 +16,8 @@
 ** Till now we have created a course reference in course material. When we tries to print course alone we will get
 only course details. If we need to get course material details as well then we have to create a bi directional
 mapping from course to course material.
+
+
+*** One to Many
+    * One teacher can teach many courses
+    *
